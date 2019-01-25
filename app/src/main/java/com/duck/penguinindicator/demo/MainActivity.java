@@ -1,4 +1,4 @@
-package com.duck.penguinindicator;
+package com.duck.penguinindicator.demo;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
