@@ -1,4 +1,4 @@
-package com.duck.penguinindicator;
+package com.duck.penguinindicator.base;
 
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
@@ -9,12 +9,14 @@ import android.content.res.TypedArray;
 import android.os.Build;
 import android.support.annotation.DrawableRes;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
+
+import com.duck.penguinindicator.config.IndicatorConfig;
+import com.duck.penguinindicator.R;
+import com.duck.penguinindicator.interpolator.ReverseInterpolator;
 
 public class BaseIndicator extends LinearLayout {
 

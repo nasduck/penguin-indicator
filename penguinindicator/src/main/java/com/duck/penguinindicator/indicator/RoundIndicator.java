@@ -1,8 +1,10 @@
-package com.duck.penguinindicator;
+package com.duck.penguinindicator.indicator;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+
+import com.duck.penguinindicator.base.BaseIndicator;
 
 public class RoundIndicator extends BaseIndicator implements ViewPager.OnPageChangeListener {
 

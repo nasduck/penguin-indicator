@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <com.duck.penguinindicator.RoundIndicator
+    <com.duck.penguinindicator.indicator.RoundIndicator
         android:id="@+id/indicator"
         android:layout_width="wrap_content"
         android:layout_height="48dp"

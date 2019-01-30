@@ -1,4 +1,6 @@
-package com.duck.penguinindicator;
+package com.duck.penguinindicator.builder;
+
+import com.duck.penguinindicator.config.IndicatorConfig;
 
 public class IndicatorBuilder {
 

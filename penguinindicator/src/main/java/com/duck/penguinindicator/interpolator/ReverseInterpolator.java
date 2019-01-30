@@ -1,4 +1,4 @@
-package com.duck.penguinindicator;
+package com.duck.penguinindicator.interpolator;
 
 import android.view.animation.Interpolator;
 

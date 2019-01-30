@@ -1,4 +1,4 @@
-package com.duck.penguinindicator;
+package com.duck.penguinindicator.config;
 
 import android.support.annotation.AnimatorRes;
 import android.support.annotation.DrawableRes;
