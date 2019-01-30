@@ -14,7 +14,7 @@
     <com.duck.penguinindicator.RoundIndicator
         android:id="@+id/indicator"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_gravity="bottom|center_horizontal"
         android:layout_marginBottom="48dp"/>
 

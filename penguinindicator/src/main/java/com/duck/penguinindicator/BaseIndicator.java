@@ -11,13 +11,14 @@ import android.support.annotation.DrawableRes;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 public class BaseIndicator extends LinearLayout {
 
-    private final static int DEFAULT_INDICATOR_WIDTH = 5;
+    private final static int DEFAULT_INDICATOR_WIDTH = 6;
 
     protected int mMargin = -1;
     protected int mWidth = -1;
@@ -86,10 +87,10 @@ public class BaseIndicator extends LinearLayout {
         mLastPosition = -1;
         IndicatorConfig config = initAttr(context, attrs);
         initWithConfig(config);
+        setGravity(Gravity.CENTER_VERTICAL);
     }
 
     public void initWithConfig(IndicatorConfig config) {
-        // 最小宽度 5dp 转化为对应的像素
         int miniSize = (int) (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
                 DEFAULT_INDICATOR_WIDTH, getResources().getDisplayMetrics()) + 0.5f);
 
@@ -161,11 +162,12 @@ public class BaseIndicator extends LinearLayout {
         // Create an indicator view
         View indicator = new View(getContext());
         indicator.setBackgroundResource(backgroundDrawableId);
-        LayoutParams lp = new LinearLayout.LayoutParams(mWidth, mHeight);
+        addView(indicator, mWidth, mHeight);
+
+        LayoutParams lp = (LayoutParams) indicator.getLayoutParams();
         lp.leftMargin = mMargin;
         lp.rightMargin = mMargin;
         indicator.setLayoutParams(lp);
-        addView(indicator);
 
         // Start Animation
         animator.setTarget(indicator);
@@ -173,8 +175,6 @@ public class BaseIndicator extends LinearLayout {
     }
 
     protected void selectIndicator(int pos) {
-
-        mLastPosition = pos;
 
         if (mAnimatorIn.isRunning()) {
             mAnimatorIn.cancel();
@@ -199,5 +199,7 @@ public class BaseIndicator extends LinearLayout {
             mAnimatorOut.setTarget(selectedIndicator);
             mAnimatorOut.start();
         }
+
+        mLastPosition = pos;
     }
 }

@@ -8,5 +8,4 @@ public class IndicatorBuilder {
         this.mConfig = config;
     }
 
-
 }
