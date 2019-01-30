@@ -9,8 +9,10 @@ import android.content.res.TypedArray;
 import android.os.Build;
 import android.support.annotation.DrawableRes;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 public class BaseIndicator extends LinearLayout {
@@ -33,11 +35,13 @@ public class BaseIndicator extends LinearLayout {
     protected int mLastPosition;
 
     public BaseIndicator(Context context) {
-        super(context, null);
+        super(context);
+        initView(context, null);
     }
 
     public BaseIndicator(Context context, AttributeSet attrs) {
-        super(context, attrs, 0);
+        super(context, attrs);
+        initView(context, attrs);
     }
 
     public BaseIndicator(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -68,7 +72,7 @@ public class BaseIndicator extends LinearLayout {
         config.setMargin(typedArray.getDimensionPixelSize(R.styleable.PenguinIndicator_pi_margin, -1));
         config.setAnimatorResId(typedArray.getResourceId(R.styleable.PenguinIndicator_pi_animator,
                 R.animator.scale_with_alpha));
-        config.setAnimatorReverseResId(typedArray.getResourceId(R.styleable.PenguinIndicator_pi_animator_reverse, 0));
+        config.setAnimatorReverseResId(typedArray.getResourceId(R.styleable.PenguinIndicator_pi_animator_reverse, -1));
         config.setBgResId(typedArray.getResourceId(R.styleable.PenguinIndicator_pi_drawable,
                         R.drawable.round_white));
         config.setUnselectedBgResId(typedArray.getResourceId(R.styleable.PenguinIndicator_pi_drawable_unselected,
@@ -103,10 +107,9 @@ public class BaseIndicator extends LinearLayout {
         mImmediateAnimatorIn.setDuration(0);
 
         mBgResId =
-                (config.getBackgroundResId() == 0) ? R.drawable.round_white : config.getBackgroundResId();
+                (config.getBackgroundResId() == -1) ? R.drawable.round_white : config.getBackgroundResId();
         mUnselectedBgResId =
-                (config.getUnselectedBackgroundId() == 0) ? config.getUnselectedBackgroundId()
-                        : config.getUnselectedBackgroundId();
+                (config.getUnselectedBackgroundId() == -1) ? config.getBackgroundResId() : config.getUnselectedBackgroundId();
     }
 
     protected Animator createAnimatorOut(IndicatorConfig config) {
@@ -115,7 +118,7 @@ public class BaseIndicator extends LinearLayout {
 
     protected Animator createAnimatorIn(IndicatorConfig config) {
         Animator animatorIn;
-        if (config.getAnimatorReverseResId() == 0) { // 用户未设置反向动画
+        if (config.getAnimatorReverseResId() == -1) { // 用户未设置反向动画
             // 则将 animatorResId 反向处理
             animatorIn = AnimatorInflater.loadAnimator(getContext(), config.getAnimatorResId());
             animatorIn.setInterpolator(new ReverseInterpolator());
@@ -158,11 +161,11 @@ public class BaseIndicator extends LinearLayout {
         // Create an indicator view
         View indicator = new View(getContext());
         indicator.setBackgroundResource(backgroundDrawableId);
-        LayoutParams lp = (LayoutParams) indicator.getLayoutParams();
+        LayoutParams lp = new LinearLayout.LayoutParams(mWidth, mHeight);
         lp.leftMargin = mMargin;
         lp.rightMargin = mMargin;
         indicator.setLayoutParams(lp);
-        addView(indicator, mWidth, mHeight);
+        addView(indicator);
 
         // Start Animation
         animator.setTarget(indicator);

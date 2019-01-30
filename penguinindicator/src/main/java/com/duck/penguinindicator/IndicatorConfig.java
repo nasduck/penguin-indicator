@@ -27,10 +27,10 @@ public class IndicatorConfig {
         width = -1;
         height = -1;
         margin = -1;
-        animatorResId = 0;
-        animatorReverseResId = 0;
-        backgroundResId = 0;
-        unselectedBackgroundId = 0;
+        animatorResId = -1;
+        animatorReverseResId = -1;
+        backgroundResId = -1;
+        unselectedBackgroundId = -1;
     }
 
     public int getWidth() {
