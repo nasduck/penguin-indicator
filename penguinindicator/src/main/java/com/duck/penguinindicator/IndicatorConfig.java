@@ -77,7 +77,7 @@ public class IndicatorConfig {
         return backgroundResId;
     }
 
-    public void setBackgroundResId(int backgroundResId) {
+    public void setBgResId(int backgroundResId) {
         this.backgroundResId = backgroundResId;
     }
 
@@ -85,7 +85,7 @@ public class IndicatorConfig {
         return unselectedBackgroundId;
     }
 
-    public void setUnselectedBackgroundId(int unselectedBackgroundId) {
+    public void setUnselectedBgResId(int unselectedBackgroundId) {
         this.unselectedBackgroundId = unselectedBackgroundId;
     }
 }
