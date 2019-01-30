@@ -30,7 +30,7 @@ public class BaseIndicator extends LinearLayout {
     protected Animator mImmediateAnimatorOut;
     protected Animator mImmediateAnimatorIn;
 
-    protected int mLastPosition = -1;
+    protected int mLastPosition;
 
     public BaseIndicator(Context context) {
         super(context, null);
@@ -79,6 +79,7 @@ public class BaseIndicator extends LinearLayout {
     }
 
     private void initView(Context context, AttributeSet attrs) {
+        mLastPosition = -1;
         IndicatorConfig config = initAttr(context, attrs);
         initWithConfig(config);
     }
@@ -168,4 +169,32 @@ public class BaseIndicator extends LinearLayout {
         animator.start();
     }
 
+    protected void selectIndicator(int pos) {
+
+        mLastPosition = pos;
+
+        if (mAnimatorIn.isRunning()) {
+            mAnimatorIn.cancel();
+        }
+
+        if (mAnimatorOut.isRunning()) {
+            mAnimatorOut.cancel();
+        }
+
+        // Restore last indicator
+        View currentIndicator = getChildAt(mLastPosition);
+        if (mLastPosition >= 0 && currentIndicator != null) {
+            currentIndicator.setBackgroundResource(mUnselectedBgResId);
+            mAnimatorIn.setTarget(currentIndicator);
+            mAnimatorIn.start();
+        }
+
+        // Animate current selected indicator
+        View selectedIndicator = getChildAt(pos);
+        if (selectedIndicator != null) {
+            selectedIndicator.setBackgroundResource(mBgResId);
+            mAnimatorOut.setTarget(selectedIndicator);
+            mAnimatorOut.start();
+        }
+    }
 }
