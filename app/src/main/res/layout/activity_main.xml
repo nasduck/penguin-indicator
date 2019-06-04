@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.duck.penguinindicator.demo.MainActivity">
+    tools:context=".MainActivity">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <com.duck.penguinindicator.indicator.RoundIndicator
+    <com.zoopark.indicator.indicator.RoundIndicator
         android:id="@+id/indicator"
         android:layout_width="wrap_content"
         android:layout_height="48dp"

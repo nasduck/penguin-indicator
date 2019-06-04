@@ -1,1 +1,1 @@
-include ':app', ':penguinindicator'
+include ':app', ':lib'
