@@ -169,6 +169,8 @@ public class BaseIndicator extends LinearLayout {
         LayoutParams lp = (LayoutParams) indicator.getLayoutParams();
         lp.leftMargin = mMargin;
         lp.rightMargin = mMargin;
+        lp.topMargin = mMargin;
+        lp.bottomMargin = mMargin;
         indicator.setLayoutParams(lp);
 
         // Start Animation
