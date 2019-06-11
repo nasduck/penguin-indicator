@@ -1,10 +1,15 @@
 package com.zoopark.indicator.indicator;
 
 import android.content.Context;
+import android.support.annotation.IntDef;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.view.View;
 
 import com.zoopark.indicator.base.BaseIndicator;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 public class RoundIndicator extends BaseIndicator implements ViewPager.OnPageChangeListener {
 
@@ -39,6 +44,25 @@ public class RoundIndicator extends BaseIndicator implements ViewPager.OnPageCha
         removeAllViews();
         if (isViewPagerInit(mViewpager)) {
             createIndicators(mViewpager.getAdapter().getCount(), mViewpager.getCurrentItem());
+        }
+    }
+
+    /**
+     * 自定义可见性注解
+     */
+    @IntDef({View.VISIBLE, View.INVISIBLE, View.GONE})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface IndicatorVisibility{}
+
+    /**
+     * 设置 indicator 的可见性
+     * @param index 位置
+     * @param visibility 可见性
+     */
+    public void setIndicatorVisiable(int index, @IndicatorVisibility int visibility) {
+        if (index >= 0 && index <= getChildCount() - 1) {
+            final View childView = getChildAt(index);
+            childView.setVisibility(visibility);
         }
     }
 
