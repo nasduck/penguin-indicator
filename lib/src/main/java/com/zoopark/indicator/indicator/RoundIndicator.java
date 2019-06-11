@@ -47,10 +47,18 @@ public class RoundIndicator extends BaseIndicator implements ViewPager.OnPageCha
         }
     }
 
+    /**
+     * 自定义可见性注解
+     */
     @IntDef({View.VISIBLE, View.INVISIBLE, View.GONE})
     @Retention(RetentionPolicy.SOURCE)
     public @interface IndicatorVisibility{}
 
+    /**
+     * 设置 indicator 的可见性
+     * @param index 位置
+     * @param visibility 可见性
+     */
     public void setIndicatorVisiable(int index, @IndicatorVisibility int visibility) {
         if (index >= 0 && index <= getChildCount() - 1) {
             final View childView = getChildAt(index);
